@@ -1,0 +1,159 @@
+.result-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.result-card {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.icon-wrapper {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.sub-message {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.details-box {
+    background: #f1f5f9;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item span {
+    color: #64748b;
+}
+
+.detail-item strong {
+    color: #0f172a;
+}
+
+.amount {
+    color: #059669 !important;
+    font-size: 1.1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.btn-home, .btn-orders {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-home {
+    background: #0f172a;
+    color: white;
+}
+
+.btn-home:hover {
+    background: #334155;
+    transform: translateY(-2px);
+}
+
+.btn-orders {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.btn-orders:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+}
+
+/* Success/Error Specifics */
+.result-card.success .icon-wrapper {
+    animation: scaleIn 0.5s ease-out;
+}
+
+.result-card.error .icon-wrapper {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+
+/* --------DAY 16---------- */
+/* Spinner polling */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto 16px;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Booking code display */
+.booking-code-display {
+    font-family: 'Courier New', monospace;
+    color: #667eea;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
