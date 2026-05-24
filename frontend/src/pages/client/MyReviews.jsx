@@ -137,7 +137,7 @@ function ReviewCard({ review, onDeleted, onUpdated }) {
     setDeleting(true);
     try {
       await axios.delete(
-        `http://localhost:8000/api/tours/reviews/me/${review.id}/`,
+        `https://tourgooo.onrender.com/api/tours/reviews/me/${review.id}/`,
         { headers: { Authorization: `Bearer ${token()}` } }
       );
       onDeleted(review.id);
@@ -152,7 +152,7 @@ function ReviewCard({ review, onDeleted, onUpdated }) {
     setSaving(true);
     try {
       const res = await axios.put(
-        `http://localhost:8000/api/tours/reviews/me/${review.id}/`,
+        `https://tourgooo.onrender.com/api/tours/reviews/me/${review.id}/`,
         { content, rating },
         { headers: { Authorization: `Bearer ${token()}` } }
       );
@@ -288,7 +288,7 @@ export default function MyReviews() {
   const [error, setError]     = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/tours/reviews/me/', {
+    axios.get('https://tourgooo.onrender.com/api/tours/reviews/me/', {
       headers: { Authorization: `Bearer ${token()}` }
     })
       .then(res => setReviews(res.data))
