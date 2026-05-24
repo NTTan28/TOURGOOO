@@ -29,7 +29,7 @@ DEBUG = 'RENDER' not in os.environ
 
 #ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1', 'cling-blinks-idealize.ngrok-free.dev']
-CSRF_TRUSTED_ORIGINS = ['https://*.ngrok-free.dev']
+CSRF_TRUSTED_ORIGINS = ['https://*.ngrok-free.dev', 'https://*.vercel.app', 'https://tourgooo.vercel.app']
 # Application definition
 
 INSTALLED_APPS = [
@@ -142,20 +142,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-CORS_ALLOW_ALL_ORIGINS = True # Mở cửa cho mọi link Frontend đều kết nối được (Rất cần thiết khi Deploy)
+CORS_ALLOW_ALL_ORIGINS = True # Mở cửa cho mọi link Frontend đều kết nối được
+CORS_ALLOW_CREDENTIALS = True
 AUTH_USER_MODEL = 'users.User'
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5172",
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "http://localhost:5175",
-    "http://localhost:5176",
-    "http://127.0.0.1:5172",
-    "http://127.0.0.1:5173",
-    "http://127.0.0.1:5174",
-    "http://127.0.0.1:5175",
-    "http://127.0.0.1:5176",
-]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
