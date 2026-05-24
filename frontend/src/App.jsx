@@ -21,6 +21,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import BookingHistory from './components/Profile/MyBookingHistory';
 import CustomerOnlyRoute from './components/auth/CustomerOnlyRoute';
 
+
 function AppContent() {
   const location = useLocation();
   // Ẩn Navbar trên trang đăng nhập, đăng ký và quên mật khẩu
