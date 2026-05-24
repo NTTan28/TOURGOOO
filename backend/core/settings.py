@@ -177,6 +177,15 @@ CLOUDINARY_STORAGE = {
     'API_KEY': '368242959374932',
     'API_SECRET': 'JJHGEi4OyA-9w7TxMt70lu_Oz78'
 }
+
+# Cấu hình trực tiếp Cloudinary SDK để cloudinary.uploader.upload() hoạt động
+import cloudinary
+cloudinary.config(
+    cloud_name='dgltxvqx2',
+    api_key='368242959374932',
+    api_secret='JJHGEi4OyA-9w7TxMt70lu_Oz78',
+    secure=True
+)
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
