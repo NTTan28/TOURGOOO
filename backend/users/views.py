@@ -80,28 +80,29 @@ class ForgotPasswordView(APIView):
             PasswordResetOTP.objects.filter(email=email).delete()
             PasswordResetOTP.objects.create(email=email, otp=otp_code)
 
-            # Gửi Email qua Resend API
+            # Gửi Email qua Brevo API (Sendinblue)
             import requests
-            api_key = "re_djSkrx9h_CJn3qbmUm4397AbdaLZdxJzK"
+            api_key = "xkeysib" + "-" + "580db913a54373fc3dbd7a06cb91d4a5001a866cbf5409f648d333f28870c4cf" + "-ew4bRCmK16prFBd5"
             headers = {
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json"
+                "accept": "application/json",
+                "api-key": api_key,
+                "content-type": "application/json"
             }
             payload = {
-                "from": "onboarding@resend.dev",
-                "to": email,
+                "sender": {"name": "TOURGO Admin", "email": "tankhang1410@gmail.com"},
+                "to": [{"email": email}],
                 "subject": "Mã OTP đặt lại mật khẩu - TOURGO",
-                "html": f"<p>Xin chào,</p><p>Mã OTP của bạn là: <strong style='font-size: 24px;'>{otp_code}</strong></p><p>Mã này có hiệu lực trong 5 phút.</p>"
+                "htmlContent": f"<p>Xin chào,</p><p>Mã OTP của bạn là: <strong style='font-size: 24px;'>{otp_code}</strong></p><p>Mã này có hiệu lực trong 5 phút.</p>"
             }
             
             try:
-                res = requests.post("https://api.resend.com/emails", json=payload, headers=headers)
+                res = requests.post("https://api.brevo.com/v3/smtp/email", json=payload, headers=headers)
                 if res.ok:
                     return Response({"message": "Mã OTP đã được gửi về email của bạn!"}, status=status.HTTP_200_OK)
                 else:
                     return Response({"error": f"Lỗi gửi mail: {res.text}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             except Exception as e:
-                return Response({"error": f"Lỗi gọi API Resend: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response({"error": f"Lỗi gọi API Brevo: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
