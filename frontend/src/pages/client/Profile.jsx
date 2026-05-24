@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Profile.css';
 import api from '../../api/axios.js';
-import ProfileSidebar from '../../components/profile/ProfileSidebar';
-import ProfileInfo from '../../components/profile/ProfileInfo';
-import BookingHistory from '../../components/profile/BookingHistory';
-import ChangePassword from '../../components/profile/ChangePassword';
+import ProfileSidebar from '../../components/Profile/ProfileSidebar';
+import ProfileInfo from '../../components/Profile/ProfileInfo';
+import BookingHistory from '../../components/Profile/MyBookingHistory';
+import ChangePassword from '../../components/Profile/ChangePassword';
 import MyReviews from './MyReviews';
 
 export default function Profile() {
