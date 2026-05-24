@@ -1,6 +1,6 @@
 import axiosClient from './axiosClient';
 
-const MEDIA_BASE = 'http://127.0.0.1:8000';
+const MEDIA_BASE = 'https://tourgooo.onrender.com';
 const DEFAULT_TOUR_IMAGE = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e';
 
 export const formatTourImageUrl = (url) => {
