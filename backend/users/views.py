@@ -80,17 +80,28 @@ class ForgotPasswordView(APIView):
             PasswordResetOTP.objects.filter(email=email).delete()
             PasswordResetOTP.objects.create(email=email, otp=otp_code)
 
-            # Gửi Email
-            subject = 'Mã OTP đặt lại mật khẩu của bạn'
-            message = f'Mã OTP của bạn là: {otp_code}. Mã này có hiệu lực trong 5 phút.'
-            email_from = None # Sẽ lấy từ settings.DEFAULT_FROM_EMAIL
-            recipient_list = [email]
+            # Gửi Email qua Resend API
+            import requests
+            api_key = "re_djSkrx9h_CJn3qbmUm4397AbdaLZdxJzK"
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json"
+            }
+            payload = {
+                "from": "onboarding@resend.dev",
+                "to": email,
+                "subject": "Mã OTP đặt lại mật khẩu - TOURGO",
+                "html": f"<p>Xin chào,</p><p>Mã OTP của bạn là: <strong style='font-size: 24px;'>{otp_code}</strong></p><p>Mã này có hiệu lực trong 5 phút.</p>"
+            }
             
             try:
-                send_mail(subject, message, email_from, recipient_list)
-                return Response({"message": "Mã OTP đã được gửi về email của bạn!"}, status=status.HTTP_200_OK)
+                res = requests.post("https://api.resend.com/emails", json=payload, headers=headers)
+                if res.ok:
+                    return Response({"message": "Mã OTP đã được gửi về email của bạn!"}, status=status.HTTP_200_OK)
+                else:
+                    return Response({"error": f"Lỗi gửi mail: {res.text}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             except Exception as e:
-                return Response({"error": f"Lỗi gửi mail: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response({"error": f"Lỗi gọi API Resend: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
