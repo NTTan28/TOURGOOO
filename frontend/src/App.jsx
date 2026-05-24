@@ -18,7 +18,7 @@ import MyReviews from './pages/client/MyReviews';
 import ProviderDashboard from './pages/provider/ProviderDashboard';
 import ProviderCustomers from './pages/provider/ProviderCustomers';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import BookingHistory from './components/profile/BookingHistory';
+import BookingHistory from './components/profile/MyBookingHistory';
 import CustomerOnlyRoute from './components/auth/CustomerOnlyRoute';
 
 function AppContent() {
