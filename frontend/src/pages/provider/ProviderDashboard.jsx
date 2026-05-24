@@ -86,7 +86,7 @@ export default function ProviderDashboard() {
       
       // Gọi API động kèm params type và year gửi lên Backend lọc dữ liệu từ SQL
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/tours/provider/analytics/revenue/?type=${reportType}&year=${year}`, 
+        `https://tourgooo.onrender.com/api/tours/provider/analytics/revenue/?type=${reportType}&year=${year}`, 
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -326,13 +326,13 @@ export default function ProviderDashboard() {
       if (imgPath.startsWith('http://') || imgPath.startsWith('https://')) {
         return imgPath;
       }
-      return `http://127.0.0.1:8000${imgPath}`;
+      return `https://tourgooo.onrender.com${imgPath}`;
     }
     if (tour.image_url) {
       if (tour.image_url.startsWith('http://') || tour.image_url.startsWith('https://')) {
         return tour.image_url;
       }
-      return `http://127.0.0.1:8000${tour.image_url}`;
+      return `https://tourgooo.onrender.com${tour.image_url}`;
     }
     return 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80';
   };
@@ -906,7 +906,7 @@ export default function ProviderDashboard() {
               <div className="current-images-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px', marginBottom: '25px' }}>
                 {selectedTour.tour_images && selectedTour.tour_images.length > 0 ? (
                   selectedTour.tour_images.map(img => {
-                    const imgUrl = (img.image.startsWith('http://') || img.image.startsWith('https://')) ? img.image : `http://127.0.0.1:8000${img.image}`;
+                    const imgUrl = (img.image.startsWith('http://') || img.image.startsWith('https://')) ? img.image : `https://tourgooo.onrender.com${img.image}`;
                     return (
                       <div key={img.id} style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
                         <img src={imgUrl} alt="tour item" style={{ width: '100%', height: '120px', objectFit: 'cover', display: 'block' }} />

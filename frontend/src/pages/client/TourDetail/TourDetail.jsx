@@ -366,7 +366,7 @@ else if (serverErrors?.date_error) {
     const formatImageUrl = (url) => {
         if (!url) return 'https://via.placeholder.com/1200x500';
         if (url.startsWith('http')) return url;
-        return `http://127.0.0.1:8000${url}`;
+        return `https://tourgooo.onrender.com${url}`;
     };
     const displayImages = (tour.tour_images?.length > 0 ? tour.tour_images.map(img => img.image) : [tour.image_url]).map(img => formatImageUrl(img));
     const mapSrc = buildGoogleMapSrc(tour);

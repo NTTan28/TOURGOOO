@@ -55,7 +55,7 @@ export default function AdminDashboard() {
     if (!token) return;
     const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
     try {
-      const url = `http://127.0.0.1:8000/api/tours/admin/bookings/${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`;
+      const url = `https://tourgooo.onrender.com/api/tours/admin/bookings/${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`;
       const res = await fetch(url, { headers });
       if (res.ok) {
         const data = await res.json();
@@ -71,7 +71,7 @@ export default function AdminDashboard() {
     if (!token) return;
     const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
     try {
-      const url = `http://127.0.0.1:8000/api/tours/admin/payments/${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`;
+      const url = `https://tourgooo.onrender.com/api/tours/admin/payments/${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`;
       const res = await fetch(url, { headers });
       if (res.ok) {
         const data = await res.json();
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/tours/categories/');
+      const res = await fetch('https://tourgooo.onrender.com/api/tours/categories/');
       if (res.ok) {
         const data = await res.json();
         setCategories(Array.isArray(data) ? data : []);
@@ -99,7 +99,7 @@ export default function AdminDashboard() {
     if (!token) return;
     const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/users/admin/system-logs/', { headers });
+      const res = await fetch('https://tourgooo.onrender.com/api/users/admin/system-logs/', { headers });
       if (res.ok) {
         const data = await res.json();
         setSystemLogs(data);
@@ -114,7 +114,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem('access_token');
     if (!token) return;
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/tours/categories/', {
+      const res = await fetch('https://tourgooo.onrender.com/api/tours/categories/', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newCategoryName, description: newCategoryDesc })
@@ -135,7 +135,7 @@ export default function AdminDashboard() {
 
   const fetchLocations = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/tours/locations/');
+      const res = await fetch('https://tourgooo.onrender.com/api/tours/locations/');
       if (res.ok) {
         const data = await res.json();
         setLocations(Array.isArray(data) ? data : []);
@@ -155,7 +155,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem('access_token');
     if (!token) return;
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/tours/locations/', {
+      const res = await fetch('https://tourgooo.onrender.com/api/tours/locations/', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newLocationName.trim(), lat, lng }),
@@ -181,7 +181,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem('access_token');
     if (!token) return;
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/tours/locations/${id}/`, {
+      const res = await fetch(`https://tourgooo.onrender.com/api/tours/locations/${id}/`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem('access_token');
     if (!token) return;
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/tours/categories/${id}/`, {
+      const res = await fetch(`https://tourgooo.onrender.com/api/tours/categories/${id}/`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -232,11 +232,11 @@ export default function AdminDashboard() {
       setLoading(true);
       
       const [statsRes, usersRes, toursRes] = await Promise.all([
-        fetch('http://127.0.0.1:8000/api/users/admin/system-stats/', { headers }), 
-        fetch('http://127.0.0.1:8000/api/users/admin/users/', { headers }),        
-        fetch('http://127.0.0.1:8000/api/tours/admin/tours/', { headers }).then(async r => {
+        fetch('https://tourgooo.onrender.com/api/users/admin/system-stats/', { headers }), 
+        fetch('https://tourgooo.onrender.com/api/users/admin/users/', { headers }),        
+        fetch('https://tourgooo.onrender.com/api/tours/admin/tours/', { headers }).then(async r => {
           if (!r.ok) {
-            return fetch('http://127.0.0.1:8000/api/tours/', { headers });
+            return fetch('https://tourgooo.onrender.com/api/tours/', { headers });
           }
           return r;
         })
@@ -276,7 +276,7 @@ export default function AdminDashboard() {
     }
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/tours/admin/tours/${tourId}/approve/`, {
+      const res = await fetch(`https://tourgooo.onrender.com/api/tours/admin/tours/${tourId}/approve/`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ action, reason }) 
@@ -307,7 +307,7 @@ export default function AdminDashboard() {
     if (!token) return alert("Vui lòng đăng nhập lại.");
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/users/admin/users/${userId}/toggle-status/`, {
+      const res = await fetch(`https://tourgooo.onrender.com/api/users/admin/users/${userId}/toggle-status/`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -343,7 +343,7 @@ export default function AdminDashboard() {
     if (!window.confirm(`Bạn có chắc chắn muốn duyệt thanh toán cho đơn đặt tour #${bookingId}?`)) return;
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/tours/admin/bookings/${bookingId}/approve/`, {
+      const res = await fetch(`https://tourgooo.onrender.com/api/tours/admin/bookings/${bookingId}/approve/`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
       });

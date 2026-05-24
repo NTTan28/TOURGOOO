@@ -23,7 +23,7 @@ const ToursPage = () => {
 
   const fetchTours = async (searchParams = {}) => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/tours/', {
+      const response = await axios.get('https://tourgooo.onrender.com/api/tours/', {
         params: {
           search: searchParams.search !== undefined ? searchParams.search : search,
           category: searchParams.category !== undefined ? (searchParams.category || undefined) : (categoryId || undefined),
@@ -52,7 +52,7 @@ const ToursPage = () => {
       const token = localStorage.getItem('access_token');
       if (!token) return;
 
-      const response = await axios.get('http://127.0.0.1:8000/api/me/', {
+      const response = await axios.get('https://tourgooo.onrender.com/api/me/', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -10,7 +10,7 @@ const ProviderCustomers = () => {
     const fetchCustomers = async () => {
       try {
         const token = localStorage.getItem('token'); // Lấy vé thông hành đã đăng nhập
-        const response = await axios.get('http://127.0.0.1:8000/api/tours/provider/customers/', {
+        const response = await axios.get('https://tourgooo.onrender.com/api/tours/provider/customers/', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCustomers(response.data);

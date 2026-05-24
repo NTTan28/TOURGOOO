@@ -56,7 +56,7 @@ export default function SearchResult() {
     const formatImageUrl = (url) => {
         if (!url) return 'https://via.placeholder.com/300x200?text=No+Image';
         if (url.startsWith('http')) return url;
-        return `http://127.0.0.1:8000${url}`;
+        return `https://tourgooo.onrender.com${url}`;
     };
 
     return (
